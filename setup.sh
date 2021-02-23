@@ -20,3 +20,7 @@ minikube start --vm-driver=virtualbox
 # check claster status
 minikube status
 
+#minikube dashboard
+
+eval $(minikube docker-env)
+
