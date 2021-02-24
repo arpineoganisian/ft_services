@@ -1,10 +1,27 @@
+#This specification creates a new Service object named "my-service", which targets TCP port 9376 on any Pod with the app=MyApp label
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+spec:
+  selector: #к чему прикрепляется 
+    app: nginx
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80 #снутри
+      targetPort: 80 #внутри
+---
 apiVersion: v1
 kind: Pod
 metadata:
   name: nginx
-
+  labels:
+    app: nginx
 spec: 
   containers:
     - name: nginx
       image: nginx-image
       imagePullPolicy: Never #image is not pulling from DockerHub
+      ports:
+        - containerPort: 80

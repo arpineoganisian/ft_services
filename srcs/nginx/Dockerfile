@@ -1,7 +1,7 @@
 FROM alpine:3.11
 
 RUN apk update && apk upgrade
-RUN apk add nginx vim openssl
+RUN apk add nginx vim openssl openrc
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY index.html /var/www/index.html
@@ -13,4 +13,6 @@ RUN openssl req -newkey rsa:2048 -nodes \
 
 EXPOSE 80 443
 
+#запуск в режиме процесса, чтобы nginx висел
+#docker держит процессы, запускаемые чрз ENTRYPOINT или CMD
 ENTRYPOINT nginx -g 'daemon off;'
