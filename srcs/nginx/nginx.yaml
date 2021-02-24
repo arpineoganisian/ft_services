@@ -9,19 +9,33 @@ spec:
   type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 80 #снутри
-      targetPort: 80 #внутри
+      port: 80 
+      targetPort: 80 
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+#    - protocol: TCP
+#      port: 22 #снутри
+#      targetPort: 22 #внутри
+
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1 # до версии 1.9.0 нужно использовать apps/v1beta2
+kind: Deployment
 metadata:
-  name: nginx
-  labels:
-    app: nginx
-spec: 
-  containers:
-    - name: nginx
-      image: nginx-image
-      imagePullPolicy: Never #image is not pulling from DockerHub
-      ports:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 1 # запускает 1 под, созданный по шаблону
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx-image
+        imagePullPolicy: Never #image is not pulling from DockerHub        
+        ports:
         - containerPort: 80
