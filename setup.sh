@@ -9,17 +9,19 @@
 
 #-------------------------------#
 
-# start a cluster
 minikube start --vm-driver=virtualbox
 
-# check claster status
 minikube status
 
 #minikube dashboard
 
-eval $(minikube docker-env)
-
 minikube addons enable matallb
 
+eval $(minikube docker-env)
 
+docker build -t nginx-image .
+
+kubectl apply -f nginx.yaml
+
+kubectl apply -f ../configmap.yaml
 

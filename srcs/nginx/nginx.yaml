@@ -7,22 +7,26 @@ spec:
   selector: #к чему прикрепляется 
     app: nginx
   type: LoadBalancer
+#  externalIPs:
+#  - 192.168.0.10
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 80 
       targetPort: 80 
-    - protocol: TCP
+    - name: https
+      protocol: TCP
       port: 443
       targetPort: 443
 #    - protocol: TCP
-#      port: 22 #снутри
-#      targetPort: 22 #внутри
+#      port: 22
+#      targetPort: 22
 
 ---
 apiVersion: apps/v1 # до версии 1.9.0 нужно использовать apps/v1beta2
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: nginx-deploy
 spec:
   selector:
     matchLabels:
@@ -39,3 +43,5 @@ spec:
         imagePullPolicy: Never #image is not pulling from DockerHub        
         ports:
         - containerPort: 80
+        - containerPort: 443
+#        - containerPort: 22

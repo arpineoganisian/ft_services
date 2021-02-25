@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM alpine:3.7
 
 RUN apk update && apk upgrade
 RUN apk add nginx vim openssl openrc
