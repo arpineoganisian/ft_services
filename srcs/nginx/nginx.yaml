@@ -9,8 +9,8 @@ spec:
   selector: #к чему прикрепляется 
     app: nginx
   type: LoadBalancer
-#  externalIPs:
-#  - 192.168.0.10
+  #externalIPs:
+  #- 192.168.99.100
   ports:
     - name: http
       protocol: TCP
@@ -30,6 +30,8 @@ apiVersion: apps/v1 # до версии 1.9.0 нужно использоват�
 kind: Deployment
 metadata:
   name: nginx-deploy
+  labels:
+    app: nginx
 spec:
   selector:
     matchLabels:
