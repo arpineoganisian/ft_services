@@ -6,6 +6,7 @@ RUN apk add nginx vim openssl openssh supervisor openrc
 RUN mkdir -p /run/nginx
 RUN mkdir -p /var/log/supervisor
 
+RUN rm -rf /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 #COPY index.html /var/www/index.html
 #COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
