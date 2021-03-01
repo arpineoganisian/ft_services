@@ -1,6 +1,6 @@
 #!/bin/bash
 
-minikube stop && minikube delete
+#minikube stop && minikube delete
 minikube start --vm-driver=virtualbox
 minikube addons enable metallb
 kubectl delete svc nginx-svc

@@ -10,3 +10,5 @@ rm -rf /etc/kubernetes/
 
 rm -rf /Users/hwoodwri/goinfre/.minikube
 rm -rf /Users/hwoodwri/goinfre/minikube
+rm -rf /Users/hwoodwri/.brew/Cellar/minikube
+rm -rf /Users/hwoodwri/.minikube
