@@ -9,8 +9,8 @@ spec:
   selector: #к чему прикрепляется 
     app: nginx
   type: LoadBalancer
-  #externalIPs:
-  #- 192.168.99.100
+#  externalIPs:
+#    - 192.168.99.100
   loadBalancerIP: 192.168.99.100
   ports:
     - name: http

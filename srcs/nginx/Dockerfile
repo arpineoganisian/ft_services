@@ -9,7 +9,6 @@ RUN mkdir -p /var/log/supervisor
 RUN rm -rf /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 #COPY index.html /var/www/index.html
-#COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY supervisord.conf /etc/supervisord.conf
 
 RUN openssl req -newkey rsa:2048 -nodes \
