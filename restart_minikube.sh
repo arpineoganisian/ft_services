@@ -6,6 +6,6 @@ minikube addons enable metallb
 kubectl delete svc nginx-svc && kubectl delete deploy nginx-deploy
 eval $(minikube docker-env)
 docker build -t nginx-image .
-kubectl apply -f ../configmap.yaml
-kubectl apply -f nginx.yaml
+kubectl apply -f srcs/configmap.yaml
+kubectl apply -f srcs/nginx/nginx.yaml
 minikube dashboard
