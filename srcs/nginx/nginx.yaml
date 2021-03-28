@@ -1,4 +1,3 @@
-#This specification creates a new Service object named "my-service", which targets TCP port 9376 on any Pod with the app=MyApp label
 apiVersion: v1
 kind: Service
 metadata:
@@ -9,8 +8,6 @@ spec:
   selector: #к чему прикрепляется 
     app: nginx
   type: LoadBalancer
-#  externalIPs:
-#    - 192.168.99.100
   loadBalancerIP: 192.168.99.100
   ports:
     - name: http
@@ -25,9 +22,8 @@ spec:
       protocol: TCP
       port: 22
       targetPort: 22
-
 ---
-apiVersion: apps/v1 # до версии 1.9.0 нужно использовать apps/v1beta2
+apiVersion: apps/v1 #до версии 1.9.0 нужно использовать apps/v1beta2
 kind: Deployment
 metadata:
   name: nginx-deploy
@@ -37,7 +33,9 @@ spec:
   selector:
     matchLabels:
       app: nginx
-  replicas: 1 # запускает 1 под, созданный по шаблону
+  replicas: 1 #запускает 1 под, созданный по шаблону
+  strategy:
+    type: Recreate #завершит работу всех запущенных экземпляров, а затем воссоздает их с более новой версией
   template:
     metadata:
       labels:
