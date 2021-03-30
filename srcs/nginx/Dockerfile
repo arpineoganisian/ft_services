@@ -16,7 +16,6 @@ RUN openssl req -newkey rsa:2048 -nodes \
     -out /etc/ssl/certs/localhost.crt \
 	-subj "/C=RU/L=Kazan/O=21school/CN=localhost"
 
-
 RUN adduser -D newuser
 #добавляет пользователя в систему, исходя из параметров, заданных в командной строке и информации из файла /etc/adduser.conf
 #-D     Не назначать пароль
