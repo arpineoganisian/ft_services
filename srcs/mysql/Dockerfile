@@ -12,4 +12,4 @@ RUN chmod 755 start.sh
 
 EXPOSE 3306
 
-CMD sh start.sh
+CMD bash start.sh
