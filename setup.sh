@@ -18,4 +18,8 @@ kubectl apply -f srcs/phpmyadmin/phpmyadmin.yaml
 docker build -t mysql-image srcs/mysql/
 kubectl apply -f srcs/mysql/mysql.yaml
 
+#WORDPRESS
+docker build -t wordpress-image srcs/wordpress/
+kubectl apply -f srcs/wordpress/wordpress.yaml
+
 minikube dashboard

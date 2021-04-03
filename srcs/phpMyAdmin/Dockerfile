@@ -7,7 +7,6 @@ RUN apk add vim nginx supervisor wget php7 php7-fpm php7-mysqli php7-mbstring
 RUN mkdir -p /run/nginx
 RUN mkdir -p /var/log/supervisor
 RUN mkdir -p /var/run/php
-#RUN mkdir -p /etc/phpmyadmin/tmp/
 
 RUN rm -rf /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
@@ -18,7 +17,6 @@ RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-lang
     mv phpMyAdmin-5.0.4-all-languages /etc/phpmyadmin
 
 RUN chmod 777 /etc/phpmyadmin/
-#tmp/
     
 COPY config.inc.php /etc/phpmyadmin
 
