@@ -19,7 +19,6 @@ COPY config.inc.php /etc/phpmyadmin
 
 RUN chmod -R 755 /etc/phpmyadmin
 
-
 RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisord.conf
 
