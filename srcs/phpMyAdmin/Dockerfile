@@ -14,10 +14,10 @@ RUN mkdir -p /run/nginx
 RUN rm -rf /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-#RUN mkdir -p /etc/phpmyadmin/tmp/ && chmod 777 /etc/phpmyadmin/tmp/
 COPY config.inc.php /etc/phpmyadmin
 
 RUN chmod -R 755 /etc/phpmyadmin
+RUN mkdir -p /etc/phpmyadmin/tmp/ && chmod 777 /etc/phpmyadmin/tmp/
 
 RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisord.conf
