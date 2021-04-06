@@ -7,6 +7,7 @@ rc default
 /etc/init.d/mariadb setup
 rc-service mariadb start
 
+# создание бд
 mysql -e "CREATE DATABASE $db_name;"
 
 # создание нового пользователя с помощью команды GRANT
@@ -18,6 +19,7 @@ mysql -e "GRANT ALL PRIVILEGES ON $db_name.* TO '$username'@'%' IDENTIFIED BY 'a
 
 mysql -e "FLUSH PRIVILEGES;"
 
+# запись бд с юзерами в только что созданную бд 
 mysql -uroot wordpress < wordpress.sql
 rc-service mariadb stop
 exec mysqld_safe

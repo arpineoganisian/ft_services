@@ -1,0 +1,55 @@
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: grafana-volume
+#   labels:
+#     app: grafana
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 1Gi
+#   storageClassName: local-path
+# ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-svc
+  annotations:
+    metallb.universe.tf/allow-shared-ip: default
+spec:
+  selector: #к чему прикрепляется 
+    app: grafana
+  type: LoadBalancer
+  loadBalancerIP: 192.168.99.100
+  ports:
+    - name: grafana-port
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+---
+apiVersion: apps/v1 #до версии 1.9.0 нужно использовать apps/v1beta2
+kind: Deployment
+metadata:
+  name: grafana-deploy
+  labels:
+    app: grafana
+spec:
+  selector:
+    matchLabels:
+      app: grafana
+  replicas: 1 #запускает 1 под, созданный по шаблону
+  strategy:
+    type: Recreate #завершит работу всех запущенных экземпляров, а затем воссоздает их с более новой версией
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: grafana-image
+        imagePullPolicy: Never #image is not pulling from DockerHub        
+        ports:
+        - containerPort: 3000

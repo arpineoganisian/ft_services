@@ -6,8 +6,10 @@ RUN apk add vim mysql mysql-client openrc
 
 COPY my.cnf /etc/mysql/
 
-COPY start.sh ./
+COPY wordpress.sql ./
+RUN chmod 755 wordpress.sql
 
+COPY start.sh ./
 RUN chmod 755 start.sh
 
 EXPOSE 3306

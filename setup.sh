@@ -22,4 +22,8 @@ kubectl apply -f srcs/mysql/mysql.yaml
 docker build -t wordpress-image srcs/wordpress/
 kubectl apply -f srcs/wordpress/wordpress.yaml
 
+#GRAFANA
+docker build -t grafana-image srcs/grafana/
+kubectl apply -f srcs/grafana/grafana.yaml
+
 minikube dashboard

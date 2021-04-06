@@ -1,6 +1,6 @@
 FROM alpine:3.12.3
 
-RUN apk update && apk upgrade
+RUN apk -U upgrade
 RUN apk add nginx vim openssl openssh supervisor openrc
 
 RUN mkdir -p /run/nginx
