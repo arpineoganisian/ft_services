@@ -5,6 +5,9 @@ minikube start --vm-driver=virtualbox
 minikube addons enable metallb
 eval $(minikube docker-env)
 
+docker pull metallb/speaker:v0.8.2
+docker pull metallb/controller:v0.8.2
+
 #NGINX
 docker build -t nginx-image srcs/nginx/
 kubectl apply -f srcs/configmap.yaml
