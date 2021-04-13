@@ -29,4 +29,8 @@ kubectl apply -f srcs/wordpress/wordpress.yaml
 docker build -t grafana-image srcs/grafana/
 kubectl apply -f srcs/grafana/grafana.yaml
 
+#INFLUXDB
+docker build -t influxdb-image srcs/influxdb/
+kubectl apply -f srcs/influxdb/influxdb.yaml
+
 minikube dashboard
