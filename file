@@ -1,0 +1,22 @@
+RUN apk add supervisor
+RUN apk add telegraf --repository http://dl-2.alpinelinux.org/alpine/edge/community
+
+COPY supervisord.conf /etc/supervisord.conf
+
+RUN mkdir -p /etc/telegraf
+
+COPY telegraf.conf /etc/telegraf/telegraf.conf
+
+
+[program:telegraf]
+command = telegraf -config /etc/telegraf/telegraf.conf
+autorestart = true
+
+
+CMD supervisord -c /etc/supervisord.conf
+
+1) установить супервизор телеграф
+2) скопировать конфиги супервизора и телеграфа
+3) создать папку для телеграфа
+4) телеграф
+5) супервизор

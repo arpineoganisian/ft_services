@@ -4,11 +4,15 @@ FROM alpine:3.12.3
 RUN apk -U upgrade 
 RUN apk add vim nginx openrc supervisor wget php7 php7-fpm php7-mysqli php7-mbstring php7-session \
     php7-opcache php7-iconv php7-json php7-xml
+RUN apk add telegraf --repository http://dl-2.alpinelinux.org/alpine/edge/community
 
 RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-languages.tar.gz && \
     tar -xzvf phpMyAdmin-5.0.4-all-languages.tar.gz && \
     rm -rf phpMyAdmin-5.0.4-all-languages.tar.gz && \
     mv phpMyAdmin-5.0.4-all-languages /etc/phpmyadmin
+    
+RUN mkdir -p /etc/telegraf
+COPY telegraf.conf /etc/telegraf/telegraf.conf
 
 RUN mkdir -p /run/nginx
 RUN rm -rf /etc/nginx/conf.d/default.conf

@@ -1,15 +1,18 @@
 FROM alpine:3.12.3
 
 RUN apk -U upgrade
-RUN apk add nginx vim openssl openssh supervisor openrc
+RUN apk add nginx openssl openssh openrc 
+RUN apk add supervisor
+RUN apk add telegraf --repository http://dl-2.alpinelinux.org/alpine/edge/community
 
 RUN mkdir -p /run/nginx
 RUN mkdir -p /var/log/supervisor
+RUN mkdir -p /etc/telegraf
 
 RUN rm -rf /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-#COPY index.html /var/www/index.html
 COPY supervisord.conf /etc/supervisord.conf
+COPY telegraf.conf /etc/telegraf/telegraf.conf
 
 RUN openssl req -newkey rsa:2048 -nodes \
     -keyout /etc/ssl/private/localhost.key -x509 -days 365 \
