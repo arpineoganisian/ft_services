@@ -9,22 +9,15 @@ COPY supervisord.conf /etc/supervisord.conf
 RUN mkdir -p /etc/telegraf
 COPY telegraf.conf /etc/telegraf/telegraf.conf
 
+COPY vsftpd.conf /etc/vsftpd/vsftpd.conf
+
 RUN openssl req -newkey rsa:2048 -nodes \
     -keyout /etc/ssl/private/localhost.key -x509 -days 365 \
     -out /etc/ssl/certs/localhost.crt \
 	-subj "/C=RU/L=Kazan/O=21school/CN=localhost"
 
-EXPOSE 21
+RUN echo "root:1234" | chpasswd
+
+EXPOSE 21 10090
 
 CMD supervisord -c /etc/supervisord.conf
-
-
-# Package details:
-# Installs binary to /usr/sbin/grafana-server
-# Installs Init.d script to /etc/init.d/grafana-server
-# Creates default file (environment vars) to /etc/default/grafana-server
-# Installs configuration file to /etc/grafana/grafana.ini
-# Installs systemd service (if systemd is available) name grafana-server.service
-# The default configuration sets the log file at /var/log/grafana/grafana.log
-# The default configuration specifies a SQLite3 db at /var/lib/grafana/grafana.db
-# Installs HTML/JS/CSS and other Grafana files at /usr/share/grafana

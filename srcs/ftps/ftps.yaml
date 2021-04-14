@@ -14,10 +14,10 @@ spec:
       protocol: TCP
       port: 21
       targetPort: 21
-    # - name: ftps-port
-    #   protocol: TCP
-    #   port: 21
-    #   targetPort: 21
+    - port: 10090
+      name: port-passv
+      protocol: TCP
+      targetPort: 10090
 ---
 apiVersion: apps/v1 #до версии 1.9.0 нужно использовать apps/v1beta2
 kind: Deployment
