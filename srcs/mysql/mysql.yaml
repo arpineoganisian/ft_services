@@ -1,3 +1,4 @@
+
 apiVersion: v1
 kind: PersistentVolume # выделяет место на диске для бд в случае, если она упадет
 metadata:

@@ -19,7 +19,7 @@ RUN chmod 755 start.sh
 
 RUN /bin/sh /start.sh
 
-VOLUME [ "/sys/fs/cgroup" ]
+# VOLUME [ "/sys/fs/cgroup" ]
 
 EXPOSE 3306
 
