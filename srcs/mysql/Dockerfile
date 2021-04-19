@@ -17,7 +17,7 @@ RUN chmod 755 wordpress.sql
 COPY start.sh ./
 RUN chmod 755 start.sh
 
-RUN /bin/sh /start.sh
+# RUN /bin/sh /start.sh
 
 # VOLUME [ "/sys/fs/cgroup" ]
 

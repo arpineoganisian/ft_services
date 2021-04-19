@@ -1,18 +1,29 @@
-
 apiVersion: v1
-kind: PersistentVolume # выделяет место на диске для бд в случае, если она упадет
+kind: PersistentVolume
 metadata:
-  name: mysql-volume
+  name: mysql-pv
   labels:
     type: local
 spec:
-  storageClassName: mysql-volume
+  storageClassName: mysql-pv
   capacity:
-    storage: 250Mi
+    storage: 200Mi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/data_mysql"
+    path: "/mnt/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  storageClassName: mysql-pv
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 200Mi
 ---
 apiVersion: v1
 kind: Service
@@ -54,3 +65,10 @@ spec:
         imagePullPolicy: Never #image is not pulling from DockerHub        
         ports:
         - containerPort: 3306
+        volumeMounts:
+          - name: mysql-pv
+            mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-pv
+        persistentVolumeClaim:
+          claimName: mysql-pvc
