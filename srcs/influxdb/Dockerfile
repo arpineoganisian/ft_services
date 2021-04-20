@@ -4,11 +4,10 @@ RUN apk -U upgrade
 
 RUN apk add supervisor
 RUN apk add influxdb telegraf --repository http://dl-2.alpinelinux.org/alpine/edge/community
-#-X, --repository REPO   Use packages from REPO
+#--repository REPO   Use packages from REPO
 
 RUN mkdir -p /run/influxdb
 RUN mkdir -p /etc/telegraf
-# RUN mkdir -p /var/lib/influxdb
 
 # Generate a configuration file
 #RUN telegraf config > /etc/telegraf/telegraf.conf

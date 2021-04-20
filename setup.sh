@@ -1,6 +1,6 @@
 #!/bin/bash
 
-minikube start --vm-driver=virtualbox --memory 3000
+minikube start --vm-driver=virtualbox --memory 4000
 
 minikube addons enable metallb
 eval $(minikube docker-env)

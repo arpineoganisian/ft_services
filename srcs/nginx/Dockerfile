@@ -20,8 +20,8 @@ RUN openssl req -newkey rsa:2048 -nodes \
 	-subj "/C=RU/L=Kazan/O=21school/CN=localhost"
 
 RUN adduser -D newuser
-#добавляет пользователя в систему, исходя из параметров, заданных в командной строке и информации из файла /etc/adduser.conf
-#-D     Не назначать пароль
+#adduser добавляет пользователя в систему, исходя из параметров, заданных в командной строке и информации из файла /etc/adduser.conf
+#-D не назначать пароль
 RUN echo "newuser:1234" | chpasswd
 # chpasswd считывает список пар имени пользователя и пароля из стандартного ввода и использует эту информацию для обновления группы существующих пользователей
 
@@ -31,5 +31,3 @@ RUN ssh-keygen -A
 EXPOSE 80 443 22
 
 CMD supervisord -c /etc/supervisord.conf
-#запуск в режиме процесса, чтобы nginx висел
-#docker держит процессы, запускаемые чрз ENTRYPOINT или CMD

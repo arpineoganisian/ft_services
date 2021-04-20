@@ -17,4 +17,4 @@ mysql -e "FLUSH PRIVILEGES;"
 # запись б.д. с юзерами в только что созданную бд 
 mysql -uroot wordpress < wordpress.sql
 rc-service mariadb stop
-# exec mysqld_safe
+exec mysqld_safe
